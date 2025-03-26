@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-    /** @use HasFactory<\Database\Factories\TagFactory> */
-    use HasFactory;
+  /** @use HasFactory<\Database\Factories\TagFactory> */
+  use HasFactory;
+
+  public function jobs()
+  {
+    return $this->belongsToMany(Job::class);
+  }
 }

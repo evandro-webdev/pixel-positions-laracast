@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   @vite(['resources/js/app.js'])
 </head>
-<body class="bg-black text-white font-hanken-gro tesk">
+<body class="bg-black text-white font-hanken-grotesk">
 
   <div class="px-10">
     <nav class="flex justify-between items-center py-4 border-b border-white/10">

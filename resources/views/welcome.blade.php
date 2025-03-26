@@ -14,16 +14,16 @@
       <x-section-heading>Tags</x-section-heading>
 
       <div class="mt-6 flex flex-wrap gap-2">
-        <x-tag textSize="text-sm">Tag</x-tag>
-        <x-tag textSize="text-sm">Tag</x-tag>
-        <x-tag textSize="text-sm">Tag</x-tag>
-        <x-tag textSize="text-sm">Tag</x-tag>
-        <x-tag textSize="text-sm">Tag</x-tag>
-        <x-tag textSize="text-sm">Tag</x-tag>
-        <x-tag textSize="text-sm">Tag</x-tag>
-        <x-tag textSize="text-sm">Tag</x-tag>
-        <x-tag textSize="text-sm">Tag</x-tag>
-        <x-tag textSize="text-sm">Tag</x-tag>
+        <x-tag>Tag</x-tag>
+        <x-tag>Tag</x-tag>
+        <x-tag>Tag</x-tag>
+        <x-tag>Tag</x-tag>
+        <x-tag>Tag</x-tag>
+        <x-tag>Tag</x-tag>
+        <x-tag>Tag</x-tag>
+        <x-tag>Tag</x-tag>
+        <x-tag>Tag</x-tag>
+        <x-tag>Tag</x-tag>
       </div>
     </section>
   

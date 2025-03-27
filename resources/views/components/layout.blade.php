@@ -29,9 +29,7 @@
         @auth
           <div class="space-x-6 font-bold flex items-center">
             <a href="/jobs/create">Post a Job</a>
-            <x-forms.form method="POST" action="/logout">
-              @csrf
-              @method('DELETE')
+            <x-forms.form method="POST" rest-method="DELETE" action="/logout">
               <x-forms.button>Logout</x-forms.button>
             </x-forms.form>
           </div>

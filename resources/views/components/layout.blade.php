@@ -13,22 +13,38 @@
 <body class="bg-black text-white font-hanken-grotesk pb-8">
 
   <div class="px-10">
-    <nav class="flex justify-between items-center py-4 border-b border-white/10">
-      <div>
-        <a href="/"><img src="{{ Vite::asset('resources/images/logo.svg') }}" alt="logo image"></a>
-      </div>
+    <div class="border-b border-white/10">
+      <nav class="flex justify-between items-center py-4  max-w-[986px] mx-auto">
+        <div>
+          <a href="/"><img src="{{ Vite::asset('resources/images/logo.svg') }}" alt="logo image"></a>
+        </div>
+  
+        <div class="space-x-6 font-bold">
+          <a href="">Jobs</a>
+          <a href="">Careers</a>
+          <a href="">Salaries</a>
+          <a href="">Companies</a>
+        </div>
+  
+        @auth
+          <div class="space-x-6 font-bold flex items-center">
+            <a href="/jobs/create">Post a Job</a>
+            <x-forms.form method="POST" action="/logout">
+              @csrf
+              @method('DELETE')
+              <x-forms.button>Logout</x-forms.button>
+            </x-forms.form>
+          </div>
+        @endauth
 
-      <div class="space-x-6 font-bold">
-        <a href="">Jobs</a>
-        <a href="">Careers</a>
-        <a href="">Salaries</a>
-        <a href="">Companies</a>
-      </div>
-
-      <div>
-        <a href="">Post a Job</a>
-      </div>
-    </nav>
+        @guest
+          <div class="space-x-6 font-bold">
+            <a href="/register">Sign up</a>
+            <a href="/login">Log in</a>
+          </div>
+        @endguest
+      </nav>
+    </div>
 
     <main class="mt-10 max-w-[986px] mx-auto">
       {{ $slot }}

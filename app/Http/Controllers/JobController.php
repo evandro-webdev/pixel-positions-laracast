@@ -62,14 +62,6 @@ class JobController extends Controller
   }
 
   /**
-   * Display the specified resource.
-   */
-  public function show(Job $job)
-  {
-    //
-  }
-
-  /**
    * Show the form for editing the specified resource.
    */
   public function edit(Job $job)

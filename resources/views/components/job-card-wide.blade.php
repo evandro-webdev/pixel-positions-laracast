@@ -1,4 +1,4 @@
-@props(['job'])
+@props(['job', 'auth' => false])
 
 <x-panel class="flex gap-x-6">
   <div>
@@ -16,9 +16,19 @@
     <p class="text-sm text-gray-400 mt-auto">{{ $job->schedule }} - From {{ $job->salary }}</p>
   </div>
 
-  <div>
-    @foreach ($job->tags as $tag)
+  <div class="flex flex-col justify-between items-end">
+    <div>
+      @foreach ($job->tags as $tag)
         <x-tag :$tag/>
       @endforeach
+    </div>
+    <div class="flex items-center gap-4 font-medium">
+      @if ($auth)
+        <a href="/jobs/{{ $job->id }}/edit" class="flex text-blue-600 hover:underline">Edit</a>
+        <x-forms.form method="POST" rest-method="DELETE" action="/jobs/{{ $job->id }}">
+          <button class="cursor-pointer text-red-600 hover:underline">Delete</button>
+        </x-forms.form>
+      @endif
+    </div>
   </div>
 </x-panel>

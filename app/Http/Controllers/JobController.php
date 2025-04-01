@@ -11,9 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
 {
-  /**
-   * Display a listing of the resource.
-   */
   public function index()
   {
     $jobs = Job::query()
@@ -29,9 +26,6 @@ class JobController extends Controller
     ]);
   }
 
-  /**
-   * Show the form for creating a new resource.
-   */
   public function create()
   {
     return view('jobs.create');
@@ -61,17 +55,11 @@ class JobController extends Controller
     return redirect('/');
   }
 
-  /**
-   * Show the form for editing the specified resource.
-   */
   public function edit(Job $job)
   {
-    //
+    return view('jobs.edit', ['job' => $job]);
   }
 
-  /**
-   * Remove the specified resource from storage.
-   */
   public function destroy(Job $job)
   {
     //

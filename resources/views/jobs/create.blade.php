@@ -6,9 +6,7 @@
     <x-forms.input label="Salary" name="salary" placeholder="$90.000 USD"/>
     <x-forms.input label="Location" name="location" placeholder="Winter Park, Florida"/>
 
-    <x-forms.select label="Schedule" name="schedule">
-      <option value="Part Time">Part Time</option>
-      <option value="Full Time">Full Time</option>
+    <x-forms.select label="Schedule" name="schedule" :options="['Part Time', 'Full Time']">
     </x-forms.select>
 
     <x-forms.input label="URL" name="url" placeholder="https::acme.com/jobs/ceo-wanted"/>

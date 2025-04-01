@@ -1,4 +1,4 @@
-@props(['label', 'name'])
+@props(['label', 'name', 'selected' => null, 'options' => []])
 
 @php
     $defaults = [
@@ -10,7 +10,11 @@
 
 <x-forms.field :$label :$name>
     <select {{ $attributes($defaults) }}>
-        {{ $slot }}
+        @foreach ($options as $option)
+          <option value="{{ $option }}" {{ $selected == $option ? 'selected' : '' }}>
+            {{ $option }}
+          </option>
+        @endforeach
     </select>
 </x-forms.field>
 

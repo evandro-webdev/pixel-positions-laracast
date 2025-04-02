@@ -13,6 +13,7 @@ Route::get('/jobs/create', [JobController::class, 'create'])->middleware('auth')
 Route::post('/jobs', [JobController::class, 'store'])->middleware('auth');
 
 Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])->middleware('auth');
+Route::patch('/jobs/{job}', [JobController::class, 'update'])->middleware('auth');
 
 Route::get('/search', SearchController::class);
 Route::get('/tags/{tag:name}', TagController::class);

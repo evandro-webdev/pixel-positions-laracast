@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\JobRequest;
 use App\Models\Job;
 use App\Models\Tag;
 use Illuminate\Support\Arr;
@@ -31,23 +32,18 @@ class JobController extends Controller
     return view('jobs.create');
   }
 
-  public function store(Request $request)
+  public function store(JobRequest $request)
   {
-    $attributes = $request->validate([
-      'title' => ['required'],
-      'salary' => ['required'],
-      'location' => ['required'],
-      'schedule' => ['required', Rule::in(['Part Time', 'Full Time'])],
-      'url' => ['required', 'active_url'],
-      'tags' => ['nullable']
-    ]);
+    $attributes = $request->validated();
 
     $attributes['featured'] = $request->has('featured');
 
     $job = Auth::user()->employer->jobs()->create(Arr::except($attributes, 'tags'));
 
-    if ($attributes['tags'] ?? false) {
-      foreach (explode(',', $attributes['tags']) as $tag) {
+    if ($request->has('tags')) {
+      $tags = array_map('trim', explode(',', $request->tags));
+
+      foreach ($tags as $tag) {
         $job->tag($tag);
       }
     }
@@ -58,6 +54,18 @@ class JobController extends Controller
   public function edit(Job $job)
   {
     return view('jobs.edit', ['job' => $job]);
+  }
+
+  public function update(JobRequest $request, Job $job)
+  {
+    $attributes = $request->validated();
+
+    $attributes['featured'] = $request->has('featured');
+
+    $job->update(Arr::except($attributes, 'tags'));
+    $job->syncTags($request->tags);
+
+    return redirect('/jobs/dashboard');
   }
 
   public function destroy(Job $job)

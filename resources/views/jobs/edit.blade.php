@@ -1,7 +1,7 @@
 <x-layout>
   <x-page-heading>Edit Job</x-page-heading>
 
-  <x-forms.form method="POST" action="/jobs">
+  <x-forms.form method="POST" rest-method="PATCH" action="/jobs/{{ $job->id }}">
     <x-forms.input label="Title" name="title" value="{{ $job->title }}" placeholder="CEO" />
     <x-forms.input label="Salary" name="salary" value="{{ $job->salary }}" placeholder="$90.000 USD" />
     <x-forms.input label="Location" name="location" value="{{ $job->location }}" placeholder="Winter Park, Florida" />

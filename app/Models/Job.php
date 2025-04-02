@@ -37,4 +37,22 @@ class Job extends Model
   {
     return $this->belongsTo(Employer::class);
   }
+
+  public function syncTags(?string $tagsSubmmited)
+  {
+    if ($tagsSubmmited) {
+      $newTags = array_map('trim', explode(',', $tagsSubmmited));
+      $existingTags = $this->tags->pluck('name')->toArray();
+
+      foreach (array_diff($newTags, $existingTags) as $tag) {
+        $this->tag($tag);
+      }
+
+      if ($tagsToRemove = array_diff($existingTags, $newTags)) {
+        $this->tags()->detach(
+          Tag::whereIn('name', $tagsToRemove)->pluck('id')
+        );
+      }
+    }
+  }
 }

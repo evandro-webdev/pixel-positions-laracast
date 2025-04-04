@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +20,7 @@ class EmployerFactory extends Factory
   {
     return [
       'name' => fake()->company(),
-      'logo' => fake()->imageUrl(category: 'business'),
+      'logo' => 'https://api.dicebear.com/8.x/identicon/svg?seed=' . Str::random(10) . '&size=90',
       'user_id' => User::factory(),
     ];
   }

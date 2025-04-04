@@ -23,8 +23,12 @@ class Job extends Model
 
   public function tag(string $name): void
   {
-    $tag = Tag::firstOrCreate(['name' => $name]);
+    $cleanName = trim($name);
+    if (empty($cleanName)) {
+      return;
+    }
 
+    $tag = Tag::firstOrCreate(['name' => $cleanName]);
     $this->tags()->attach($tag);
   }
 
@@ -38,21 +42,35 @@ class Job extends Model
     return $this->belongsTo(Employer::class);
   }
 
-  public function syncTags(?string $tagsSubmmited)
+  public function addTags(?string $tagsSubmmited)
   {
     if ($tagsSubmmited) {
-      $newTags = array_map('trim', explode(',', $tagsSubmmited));
-      $existingTags = $this->tags->pluck('name')->toArray();
+      $tags = array_map('trim', explode(',', $tagsSubmmited));
 
-      foreach (array_diff($newTags, $existingTags) as $tag) {
+      foreach ($tags as $tag) {
         $this->tag($tag);
       }
+    }
+  }
 
-      if ($tagsToRemove = array_diff($existingTags, $newTags)) {
-        $this->tags()->detach(
-          Tag::whereIn('name', $tagsToRemove)->pluck('id')
-        );
-      }
+  public function syncTags(?string $tagsSubmmited)
+  {
+    if (!$tagsSubmmited) {
+      $this->tags()->detach();
+      return;
+    }
+
+    $existingTags = $this->tags->pluck('name')->toArray();
+    $newTags = array_map('trim', explode(',', $tagsSubmmited));
+
+    foreach (array_diff($newTags, $existingTags) as $tag) {
+      $this->tag($tag);
+    }
+
+    if ($tagsToRemove = array_diff($existingTags, $newTags)) {
+      $this->tags()->detach(
+        Tag::whereIn('name', $tagsToRemove)->pluck('id')
+      );
     }
   }
 }

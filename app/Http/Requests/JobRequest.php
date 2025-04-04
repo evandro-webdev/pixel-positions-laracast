@@ -28,7 +28,7 @@ class JobRequest extends FormRequest
       'location' => ['required'],
       'schedule' => ['required', Rule::in(['Part Time', 'Full Time'])],
       'url' => ['required', 'active_url'],
-      'tags' => ['nullable']
+      'tags' => ['nullable', 'string', 'regex:/^[a-zA-Z0-9áéíóúãõâêôçÁÉÍÓÚÃÕÂÊÔÇ\-\s,]+$/']
     ];
   }
 }

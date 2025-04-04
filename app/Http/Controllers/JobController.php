@@ -33,7 +33,6 @@ class JobController extends Controller
   public function store(JobRequest $request)
   {
     $attributes = $request->validated();
-
     $attributes['featured'] = $request->has('featured');
 
     $job = Auth::user()->employer->jobs()->create(Arr::except($attributes, 'tags'));
@@ -50,7 +49,6 @@ class JobController extends Controller
   public function update(JobRequest $request, Job $job)
   {
     $attributes = $request->validated();
-
     $attributes['featured'] = $request->has('featured');
 
     $job->update(Arr::except($attributes, 'tags'));

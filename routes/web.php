@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\JobDashboardController;
@@ -18,10 +19,12 @@ Route::patch('/jobs/{job}', [JobController::class, 'update'])->middleware('auth'
 
 Route::delete('/jobs/{job}', [JobController::class, 'destroy'])->middleware('auth');
 
+Route::get('/jobs/dashboard', [JobDashboardController::class, 'dashboard'])->middleware('auth');
+
 Route::get('/search', SearchController::class);
 Route::get('/tags/{tag:name}', TagController::class);
 
-Route::get('/jobs/dashboard', [JobDashboardController::class, 'dashboard'])->middleware('auth');
+Route::get('/employers', [EmployerController::class, 'index']);
 
 Route::middleware('guest')->group(function () {
   Route::get('/register', [RegisteredUserController::class, 'create']);

@@ -23,6 +23,7 @@ Route::get('/jobs/dashboard', [JobDashboardController::class, 'dashboard'])->mid
 
 Route::get('/search', SearchController::class);
 Route::get('/tags/{tag:name}', TagController::class);
+Route::get('/employers/{employer:name}', [EmployerController::class, 'jobsByEmployer']);
 
 Route::get('/employers', [EmployerController::class, 'index']);
 

@@ -10,4 +10,12 @@ class EmployerController extends Controller
   {
     return view('employers.index', ['employers' => Employer::with(['jobs'])->get()]);
   }
+
+  public function jobsByEmployer(Employer $employer)
+  {
+    return view('jobs.results', [
+      'jobs' => $employer->jobs,
+      'searchTerm' => $employer->name
+    ]);
+  }
 }

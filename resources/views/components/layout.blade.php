@@ -15,19 +15,17 @@
   <div class="px-10">
     <div class="border-b border-white/10">
       <nav class="flex justify-between items-center py-4  max-w-[986px] mx-auto">
-        <div>
+        <div class="flex-1">
           <a href="/"><img src="{{ Vite::asset('resources/images/logo.svg') }}" alt="logo image"></a>
         </div>
   
-        <div class="space-x-6 font-bold">
-          <a href="">Jobs</a>
-          <a href="">Careers</a>
-          <a href="">Salaries</a>
-          <a href="">Companies</a>
+        <div class="space-x-6 font-bold flex flex-1 justify-center">
+          <a href="/">Jobs</a>
+          <a href="/employers">Employers</a>
         </div>
   
         @auth
-          <div class="space-x-6 font-bold flex items-center">
+          <div class="space-x-6 font-bold flex flex-1 items-center justify-end">
             <a href="/jobs/create">Post a Job</a>
             
             <div class="relative group" id="dropdown-container">
@@ -47,7 +45,7 @@
         @endauth
 
         @guest
-          <div class="space-x-6 font-bold">
+          <div class="space-x-6 font-bold flex flex-1 justify-end">
             <a href="/register">Sign up</a>
             <a href="/login">Log in</a>
           </div>
